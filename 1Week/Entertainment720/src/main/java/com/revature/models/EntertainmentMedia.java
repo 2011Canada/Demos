@@ -2,7 +2,7 @@ package com.revature.models;
 
 import java.util.Arrays;
 
-public abstract class EntertainmentMedia extends Object implements Displayable{
+public abstract class EntertainmentMedia extends Object implements Displayable, Comparable<EntertainmentMedia>{
 
 	private static int numberOfMedia = 0;
 	
@@ -59,6 +59,21 @@ public abstract class EntertainmentMedia extends Object implements Displayable{
 
 		
 	}
+	
+	
+	@Override
+	public int compareTo(EntertainmentMedia o) {
+		//how should it be sorted?
+		//if this name is smaller, we get -1
+		//if this name is bigger, we get 1
+		//if they are the same we get 0
+		return this.getName().compareTo(o.getName());
+	}
+	
+	
+	
+	
+	
 	
 	
 	

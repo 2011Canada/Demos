@@ -7,6 +7,7 @@ public class Movie extends EntertainmentMedia {
 	
 	double runtime;
 	
+	//the one to infinity people that worked on the movie
 	String[] credits;
 	
 	//we can use a specialized child to configure its generalized parent

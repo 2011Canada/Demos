@@ -10,7 +10,7 @@ public class ConnectionFactory {
 	
 	//turn the factory into a singleton so everyone can only get a connection from our factory
 	//make a private static reference to our self -> the one and only copy
-	private static ConnectionFactory cf = new ConnectionFactory(5);
+	private static ConnectionFactory cf = new ConnectionFactory(1);
 	
 	//provide a single point of access to the connection factory
 	public static ConnectionFactory getConnectionFactory() {

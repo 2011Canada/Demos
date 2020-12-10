@@ -7,6 +7,8 @@ public abstract class EntertainmentMedia extends Object implements Displayable, 
 	private static int numberOfMedia = 0;
 	
 	
+	private int mediaId;
+	
 	private double price;
 	//what kind of media
 	private String type;
@@ -82,12 +84,14 @@ public abstract class EntertainmentMedia extends Object implements Displayable, 
 	}
 
 
+
 	@Override
 	public String toString() {
-		return "EntertainmentMedia [price=" + price + ", type=" + type + ", name=" + name + ", copyrightOwner="
-				+ copyrightOwner + ", releaseDate=" + releaseDate + ", rating=" + rating + ", recommendedAgeRange="
-				+ Arrays.toString(recommendedAgeRange) + "]";
+		return "EntertainmentMedia [mediaId=" + mediaId + ", price=" + price + ", type=" + type + ", name=" + name
+				+ ", copyrightOwner=" + copyrightOwner + ", releaseDate=" + releaseDate + ", rating=" + rating
+				+ ", recommendedAgeRange=" + Arrays.toString(recommendedAgeRange) + "]";
 	}
+
 
 
 	@Override
@@ -95,6 +99,7 @@ public abstract class EntertainmentMedia extends Object implements Displayable, 
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((copyrightOwner == null) ? 0 : copyrightOwner.hashCode());
+		result = prime * result + mediaId;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(price);
@@ -105,6 +110,7 @@ public abstract class EntertainmentMedia extends Object implements Displayable, 
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
+
 
 
 	@Override
@@ -120,6 +126,8 @@ public abstract class EntertainmentMedia extends Object implements Displayable, 
 			if (other.copyrightOwner != null)
 				return false;
 		} else if (!copyrightOwner.equals(other.copyrightOwner))
+			return false;
+		if (mediaId != other.mediaId)
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -146,9 +154,35 @@ public abstract class EntertainmentMedia extends Object implements Displayable, 
 	}
 
 
+
+	public static int getNumberOfMedia() {
+		return numberOfMedia;
+	}
+
+
+
+	public static void setNumberOfMedia(int numberOfMedia) {
+		EntertainmentMedia.numberOfMedia = numberOfMedia;
+	}
+
+
+
+	public int getMediaId() {
+		return mediaId;
+	}
+
+
+
+	public void setMediaId(int mediaId) {
+		this.mediaId = mediaId;
+	}
+
+
+
 	public double getPrice() {
 		return price;
 	}
+
 
 
 	public void setPrice(double price) {
@@ -156,9 +190,11 @@ public abstract class EntertainmentMedia extends Object implements Displayable, 
 	}
 
 
+
 	public String getType() {
 		return type;
 	}
+
 
 
 	public void setType(String type) {
@@ -166,9 +202,11 @@ public abstract class EntertainmentMedia extends Object implements Displayable, 
 	}
 
 
+
 	public String getName() {
 		return name;
 	}
+
 
 
 	public void setName(String name) {
@@ -176,9 +214,11 @@ public abstract class EntertainmentMedia extends Object implements Displayable, 
 	}
 
 
+
 	public String getCopyrightOwner() {
 		return copyrightOwner;
 	}
+
 
 
 	public void setCopyrightOwner(String copyrightOwner) {
@@ -186,9 +226,11 @@ public abstract class EntertainmentMedia extends Object implements Displayable, 
 	}
 
 
+
 	public String getReleaseDate() {
 		return releaseDate;
 	}
+
 
 
 	public void setReleaseDate(String releaseDate) {
@@ -196,9 +238,11 @@ public abstract class EntertainmentMedia extends Object implements Displayable, 
 	}
 
 
+
 	public int getRating() {
 		return rating;
 	}
+
 
 
 	public void setRating(int rating) {
@@ -206,26 +250,18 @@ public abstract class EntertainmentMedia extends Object implements Displayable, 
 	}
 
 
+
 	public int[] getRecommendedAgeRange() {
 		return recommendedAgeRange;
 	}
 
 
+
 	public void setRecommendedAgeRange(int[] recommendedAgeRange) {
-		if(recommendedAgeRange.length != 2) {
-			//this is bad
-		}
 		this.recommendedAgeRange = recommendedAgeRange;
 	}
 
 
-	public static int getNumberOfMedia() {
-		return numberOfMedia;
-	}
-
-
-	
-	
 	
 	
 }

@@ -15,6 +15,13 @@ public class Movie extends EntertainmentMedia {
 		super(price, "Movie", name, copyrightOwner, releaseDate, rating, recommendedAgeRange);
 	}
 	
+	public Movie() {
+		super();
+		this.setType("Movie");
+	}
+	
+	
+	
 	
 	
 //	@Override//polymorphism
@@ -34,6 +41,22 @@ public class Movie extends EntertainmentMedia {
 //	}
 
 
+
+	public double getRuntime() {
+		return runtime;
+	}
+
+	public void setRuntime(double runtime) {
+		this.runtime = runtime;
+	}
+
+	public String[] getCredits() {
+		return credits;
+	}
+
+	public void setCredits(String[] credits) {
+		this.credits = credits;
+	}
 
 	@Override
 	public String toString() {

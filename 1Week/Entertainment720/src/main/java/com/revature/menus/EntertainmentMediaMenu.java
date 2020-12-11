@@ -11,7 +11,7 @@ import com.revature.services.EntertainmentMediaService;
 
 //this menu lists all of the media options
 //users can choose an option to purchase
-public class EntertainmentMediaMenu implements Displayable{
+public class EntertainmentMediaMenu implements Menu{
 	
 	EntertainmentMediaService ems;
 	

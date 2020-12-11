@@ -48,3 +48,69 @@ create table book(
 );
 
 
+create table users (
+	"user_id" serial primary key,
+	"username" text unique not null,
+	"password" text not null,
+	"first_name" text,
+	"last_name" text
+);
+
+
+
+
+begin;
+insert into "media" ("price", "type", "name", "copyright_owner", "release_date", "rating", "max_age" , "min_age")
+			values  (10.00, 'movie', 'Hot Fuzz', 'Simon Pegg', '2009-01-01', 9, 65, 13),
+			        (1.00, 'movie', 'Cats', 'Lloyd Weber', '2019-10-01', 1, 65, 13),
+			        (5.99, 'movie', 'Harry Potter and the Philosopher''s Stone', 'JK Rolwing', '2001-11-01', 10, 100, 1)
+			       returning "media_id";
+			       
+insert into movie ("runtime", "main_media")
+  			values( 122.00,  1),
+  			      (300.00, 2),
+  			      (159.00, 3);
+  			     
+insert into crew ("name")
+			values ('Daniel Radcliffe'),
+				   ('Emma Watson'),
+				   ('Rupert Grint'),
+				   ('Simon Pegg'),
+				   ('Nick Frost'),
+				   ('Taylor Swift'),
+				   ('Idris Elba'),
+				   ('Judy Dench');
+			
+insert into movie_crew values (1, 4),
+							  (1, 5),
+							  (2, 6),
+							  (2, 7),
+							  (2, 8),
+							  (3, 1),
+							  (3, 2),
+							  (3, 3);
+							 
+commit;
+  			     
+
+select m.price , m."type" , m."name" , m.copyright_owner , m.release_date, m.rating, m.max_age , m.min_age , m.media_id , m2.runtime , m2.movie_id , array_agg(c."name") as credits from media m 
+			inner join movie m2 on m.media_id = m2.main_media 
+			inner join movie_crew mc on m2.movie_id = mc.movie_id 
+			inner join crew c on mc.crew_id = c.crew_id
+			group by m.media_id, m2.movie_id;
+		
+		
+create view all_movies as select m.price , m."type" , m."name" , m.copyright_owner , m.release_date, m.rating, m.max_age , m.min_age , m.media_id , m2.runtime , m2.movie_id , array_agg(c."name") as credits from media m 
+			inner join movie m2 on m.media_id = m2.main_media 
+			inner join movie_crew mc on m2.movie_id = mc.movie_id 
+			inner join crew c on mc.crew_id = c.crew_id
+			group by m.media_id, m2.movie_id;
+		
+		
+		
+select * from all_movies;
+
+select * from media m;
+
+insert into users ("username", "password", "first_name", "last_name")
+			values ('AB', 'password', 'Alec', 'Batson');

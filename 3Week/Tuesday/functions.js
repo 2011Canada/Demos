@@ -57,13 +57,13 @@ callFunctionWithHelloWorld((st)=>{
 
 
 function named(){
-
+    this//refers to the object that is named
 }
 
 //lambda syntax
 
 let named2 = () => {
-
+    this//refers to the object that is the global scope, because arrow functions have no this
 }
 
 let arrow2 = ele => ele + "some string"

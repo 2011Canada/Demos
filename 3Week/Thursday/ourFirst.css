@@ -1,0 +1,35 @@
+
+
+
+table {
+    border-width: 3px;
+    border-color: red;
+    border-style:dashed solid solid dashed ;
+}
+
+.input-block {
+    display: block;
+}
+
+/* example of nested selector
+we target an id then any child that was an option element */
+#cheese-selector option {
+
+    background-color: black;
+}
+
+#cheese-option-cheddar {
+    color:blueviolet
+}
+
+#cheese-option-gouda {
+    color:orange
+}
+
+#cheese-option-brie {
+    color:lightblue
+}
+
+#cheese-option-mozzarella {
+    color:white
+}

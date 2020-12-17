@@ -1,0 +1,14 @@
+
+
+.cj-nav {
+    background-color: aquamarine!important;
+}
+
+#card-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.cn-joke-card {
+    margin: 4px 4px 4px 4px
+}

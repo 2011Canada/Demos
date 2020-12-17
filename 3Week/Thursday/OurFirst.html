@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- is for metadata -->
+    <!-- you should always have a title, for SEO -->
+    <title>2011 Canada</title>
+    <!-- what charset is your page using, utf-8 good to specify  -->
+    <meta charset="utf-8">
+    <!-- for making webpages that don't suck in mobile, set the following -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="./ourFirst.css" />
+</head>
+
+<body>
+    <!-- this is for the data that will be displayed -->
+    <ol>
+        <li>
+            Tabby
+        </li>
+        <li>
+            Calico
+        </li>
+        <li>
+            Persian
+        </li>
+        <li>
+            Siamese
+        </li>
+    </ol>
+    <br />
+    <!-- self closing tags, generally have no data between the beginning and end, all data necessary is provided through attributes -->
+    <!-- br == linebreak
+    they work very differently on a computer vs a phone, % space they use -->
+    <table>
+        <thead>
+            <th>
+                username
+            </th>
+            <th>
+                id
+            </th>
+            <th>
+                color
+            </th>
+            <th>
+                password
+            </th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alec </td>
+                <td> 1 </td>
+                <td>Burgundy</td>
+                <td>JsRULEZ</td>
+            </tr>
+            <tr>
+                <td>Matt </td>
+                <td> 2 </td>
+                <td>Blue</td>
+                <td>password</td>
+            </tr>
+            <tr>
+                <td>Henry </td>
+                <td> 3 </td>
+                <td>pink</td>
+                <td>password</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form>
+        <div class="input-block">
+            <label for="username-input">Username: </label>
+            <input type="text" id="username-input" name="username" placeholder="username" required />
+        </div>
+        <div class="input-block">
+            <input type="password" id="password-input" name="password" placeholder="password" required />
+        </div>
+        <div class="input-block">
+            <label for="cheese-selector">Cheese Selector</label>
+            <select id="cheese-selector">
+             <option id="cheese-option-cheddar" value="Cheddar">Cheddar</option>
+             <option id="cheese-option-gouda" value="Gouda"> Gouda</option>
+             <option id="cheese-option-brie" value="Brie">Brie</option>
+             <option id="cheese-option-mozzarella" value="Mozzarella" selected>Mozzarella</option>
+            </select>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+
+
+</body>
+
+</html>

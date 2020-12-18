@@ -12,3 +12,8 @@
 .cn-joke-card {
     margin: 4px 4px 4px 4px
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}

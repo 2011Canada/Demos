@@ -25,7 +25,7 @@ public class AuthServlet extends HttpServlet{
 		allUsers.add(new User("AD", "password", "alec", "Datson", 3));
 	}
 	
-	
+	//from jackson
 	ObjectMapper om = new ObjectMapper();
 	
 	@Override
@@ -51,7 +51,5 @@ public class AuthServlet extends HttpServlet{
 		}
 		
 	}
-	
-	
 	
 }

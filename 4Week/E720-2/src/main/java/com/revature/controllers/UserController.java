@@ -1,38 +1,40 @@
 package com.revature.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.models.Credentials;
+import com.revature.exceptions.UnauthenticatedException;
+import com.revature.exceptions.UnauthorizedException;
 import com.revature.models.User;
 import com.revature.repositories.UserPostgresDao;
 import com.revature.services.UserService;
 import com.revature.services.UserServiceImplementation;
 
-public class AuthController {
-	
+public class UserController {
+
 	private UserService us = new UserServiceImplementation(new UserPostgresDao());
 	
 	private ObjectMapper om = new ObjectMapper();
 	
-	//actually do the request
-	public void userLogin(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		Credentials cred = om.readValue(req.getInputStream(), Credentials.class);
-		User u = us.login(cred.getUsername(), cred.getPassword());
-		//use your session to keep track of your user permission level
-		HttpSession sess = req.getSession();
-		//user.getRole
-		sess.setAttribute("User-Role", "Admin");
+
+	public void findAllUsers(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
+		HttpSession sess = req.getSession();
+		
+		if(sess.getAttribute("User-Role") == null) {
+			throw new UnauthenticatedException();
+		} else if(!sess.getAttribute("User-Role").equals("Admin")) {
+			throw new UnauthorizedException();
+		}
+		List<User> allusers = us.getAllUsers();
 		res.setStatus(200);
-		res.getWriter().write(om.writeValueAsString(u));
+		res.getWriter().write(om.writeValueAsString(allusers));
+		
 	}
 	
-	
-	
-
 }

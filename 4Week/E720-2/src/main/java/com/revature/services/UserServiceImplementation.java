@@ -1,5 +1,7 @@
 package com.revature.services;
 
+import java.util.List;
+
 import com.revature.exceptions.InternalErrorException;
 import com.revature.exceptions.UserNotFoundException;
 
@@ -22,6 +24,14 @@ public class UserServiceImplementation implements UserService {
 			User u = ud.findUserByUsernameAndPassword(username, password);
 			//Entertainment720Launcher.setCurrentUser(u);
 			return u;	
+	}
+
+
+
+	@Override
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return ud.findAll();
 	}
 
 }

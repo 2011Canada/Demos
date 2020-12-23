@@ -1,11 +1,11 @@
 package com.revature.services;
 
-import com.revature.models.Displayable;
+import com.revature.models.User;
 
 
 public interface UserService {
 
-	public Displayable login(String username, String password);
+	public User login(String username, String password);
 	
 	
 }

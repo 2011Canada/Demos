@@ -18,15 +18,10 @@ public class UserServiceImplementation implements UserService {
 	
 	
 	@Override
-	public Displayable login(String username, String password) {
-		try {
+	public User login(String username, String password) {
 			User u = ud.findUserByUsernameAndPassword(username, password);
 			//Entertainment720Launcher.setCurrentUser(u);
-			return u;
-		} catch (UserNotFoundException | InternalErrorException e) {
-			// TODO Auto-generated catch block
-			return ()->e.getMessage();
-		}
+			return u;	
 	}
 
 }

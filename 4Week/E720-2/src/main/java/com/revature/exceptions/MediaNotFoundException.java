@@ -1,6 +1,6 @@
 package com.revature.exceptions;
 
-public class MediaNotFoundException extends Exception {
+public class MediaNotFoundException extends RuntimeException {
 
 
 	private static int numberOfOccurances =0;

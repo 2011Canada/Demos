@@ -20,7 +20,7 @@ public class UserPostgresDao implements UserDao {
 	public User findUserByUsernameAndPassword(String username, String password) throws UserNotFoundException, InternalErrorException {
 		Connection conn = cf.getConnection();
 		try {
-			String sql = "select * from users where \"username\" = ? and \"password\" = ? ;";
+			String sql = "select * from entertainment720.users where \"username\" = ? and \"password\" = ? ;";
 			PreparedStatement getUser = conn.prepareStatement(sql);
 			getUser.setString(1, username);
 			getUser.setString(2, password);
@@ -50,7 +50,7 @@ public class UserPostgresDao implements UserDao {
 	public List<User> findAll() {
 		Connection conn = cf.getConnection();
 		try {
-			String sql = "select * from users;";
+			String sql = "select * from entertainment720.users;";
 			PreparedStatement getUser = conn.prepareStatement(sql);
 			
 			

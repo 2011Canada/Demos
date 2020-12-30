@@ -6,6 +6,8 @@ import { FancyBorder } from './components/fancy-border/FancyBorder';
 import { Clicker } from './components/clicker/ClickerFunction';
 import { ChuckNorrisJoke } from './components/chuck-norris-joke/ChuckNorrisJoke';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+import { LifecycleClass } from './components/lifecycle/LifecycleClass';
+import { LifecycleFunction } from './components/lifecycle/LifecycleFunction';
 
 function App() {
   return (
@@ -41,7 +43,12 @@ function App() {
                 </FancyBorder>)
             }} />
             {/* the render prop method takes a function to be executed as the render function */}
-            
+            <Route path="/lifecycle-class">
+               <LifecycleClass/>
+            </Route>
+            <Route path="/lifecycle-function">
+               <LifecycleFunction/>
+            </Route>
           </Switch>
           
         </header>
@@ -50,6 +57,10 @@ function App() {
         <Link to="/clicker"> Clicker</Link>
         <br></br>
         <Link to="/joke"> Joke</Link>
+        <br></br>
+        <Link to="/lifecycle-class">lifecycle-class</Link>
+        <br></br>
+        <Link to="/lifecycle-function">lifecycle-function</Link>
       </Router>
     </div>
   );

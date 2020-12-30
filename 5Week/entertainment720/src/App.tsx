@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { CanadaBanner } from './components/canada-banner/CanadaBanner';
@@ -11,8 +11,14 @@ import { LifecycleFunction } from './components/lifecycle/LifecycleFunction';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LoginForm } from './components/login/LoginForm';
+import { PokemonDisplay } from './components/pokedex/PokemonCard';
+import { PokemonType } from './models/Pokemon';
+import { Pokedex } from './components/pokedex/Pokedex';
+import protectComponent from './components/protected-route/UserAuthRoute';
+import { User } from './models/User';
 
 function App() {
+  const [user, changeUser] = useState<User>()
   return (
     <div className="App">
       <Router>
@@ -42,7 +48,7 @@ function App() {
             <Route path="/joke" render={() => {
               return (
                 <FancyBorder>
-                  <ChuckNorrisJoke />
+                  <ChuckNorrisJoke user={user}/>
                 </FancyBorder>)
             }} />
             {/* the render prop method takes a function to be executed as the render function */}
@@ -53,7 +59,10 @@ function App() {
               <LifecycleFunction />
             </Route>
             <Route path="/login">
-              <LoginForm/>
+              <LoginForm  currentUser={user} updateCurrentUser={changeUser} />
+            </Route>
+            <Route path="/pokemon">
+              <Pokedex/>
             </Route>
           </Switch>
 

@@ -2,13 +2,19 @@ import { Button, Grid, TextField } from '@material-ui/core'
 import React, { SyntheticEvent, useState } from 'react'
 import { Redirect } from 'react-router'
 import { toast } from 'react-toastify'
+import { User } from '../../models/User'
 import { e720Login } from '../../remote/e720/e720-functions'
 
 
-export const LoginForm: React.FunctionComponent<any> = (props) => {
+interface ILoginProps{
+    updateCurrentUser: (u:User) => void
+    currentUser:User
+}
+
+export const LoginForm: React.FunctionComponent<ILoginProps> = (props) => {
     const [username, changeUsername] = useState("")
     const [password, changePassword] = useState("")
-    const [user, changeUser] = useState()
+    
 
     const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         changeUsername(e.target.value)
@@ -25,7 +31,7 @@ export const LoginForm: React.FunctionComponent<any> = (props) => {
         //send username and password to a remote location to get the user info/auth token
         try {
             let user = await e720Login(username, password)
-            changeUser(user)
+            props.updateCurrentUser(user)
         }catch(e){
             changePassword("")
             toast.error(e.message)
@@ -34,7 +40,7 @@ export const LoginForm: React.FunctionComponent<any> = (props) => {
 
     return (
         // conditional rendering
-        (user) ? //have an if statement or a ternary and sometimes render one thing or another
+        (props.currentUser) ? //have an if statement or a ternary and sometimes render one thing or another
         <Redirect  to='/clicker'/>
         :
         <form onSubmit={submitLogin}>

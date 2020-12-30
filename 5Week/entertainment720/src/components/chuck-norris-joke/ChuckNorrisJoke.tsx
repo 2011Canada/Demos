@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Redirect } from 'react-router'
 import { getRandomChuckNorrisJoke } from '../../remote/icndb/get-random-joke'
 
 
@@ -23,9 +24,13 @@ export const ChuckNorrisJoke: React.FunctionComponent<any> = (props) => {
 
 
     return (
+        (props.user)?
+
         <div>
             <p>{joke}</p>
             <button onClick={async ()=>{changeJoke(await getRandomChuckNorrisJoke())}}>Get Joke</button>
         </div>
+        :
+        <Redirect to="/login"/>
     )
 } 

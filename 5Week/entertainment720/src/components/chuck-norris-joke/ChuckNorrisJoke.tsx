@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router'
 import { getRandomChuckNorrisJoke } from '../../remote/icndb/get-random-joke'
+import protectComponent from '../protected-route/UserAuthRoute'
 
 
-export const ChuckNorrisJoke: React.FunctionComponent<any> = (props) => {
+const ChuckNorrisJoke: React.FunctionComponent<any> = (props) => {
 
     const [joke, changeJoke ] = useState("Why isn't there a street named after chuck norris? Because NOBODY crosses Chuck Norris")
 
@@ -22,15 +23,15 @@ export const ChuckNorrisJoke: React.FunctionComponent<any> = (props) => {
         getJoke()
     }, [])//if you want a useEffect to take place only once, put an empty array after the cb function
 
-
+    console.log(props.anyValue)
     return (
-        (props.user)?
-
         <div>
             <p>{joke}</p>
             <button onClick={async ()=>{changeJoke(await getRandomChuckNorrisJoke())}}>Get Joke</button>
         </div>
-        :
-        <Redirect to="/login"/>
     )
 } 
+
+
+//if you have enhancers for what you are exporting, you generally use a default export
+export default protectComponent(ChuckNorrisJoke)

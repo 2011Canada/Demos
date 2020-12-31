@@ -1,31 +1,45 @@
 import React from 'react'
 import { Redirect } from 'react-router'
-import { User } from '../../models/User'
+import { UserContext } from '../../App'
 
 
-interface IUserAuthRouteProps {
-    currentUser:User
-}
 
-const UserAuthRoute:React.FunctionComponent<IUserAuthRouteProps> = (props) => {
+
+
+const UserAuthRoute: React.FunctionComponent<any> = (props) => {
+
+//I would probably pass in accepted roles as props to UserAuth
+
     return (
-        (props.currentUser) ?
+        <UserContext.Consumer>
+        { user =>
+
+            (user.roles) ?
             <>
-            {props.children}
+                {props.children}
             </>
             :
-            <Redirect to="/login"/>
+            <Redirect to="/login" />
+        }
+        </UserContext.Consumer>
     )
 }
 
 
 //HOC
 //just a function
-const protectComponent = (currentUser:User, component:any) => {
+const protectComponent = (Component: any) => {
     //return a new component
-
-    return UserAuthRoute({currentUser,children:component()})
-    
+    return (props: any) => {
+        //use the custom hook
+        return (
+            <>
+                <UserAuthRoute>
+                    <Component {...props} />
+                </UserAuthRoute>
+            </>
+        )
+    }
 }
 
 export default protectComponent

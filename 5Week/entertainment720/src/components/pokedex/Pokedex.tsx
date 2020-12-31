@@ -2,6 +2,7 @@ import { Button, Grid } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { Pokemon, PokemonType } from '../../models/Pokemon'
 import { getMultiplePokemon } from '../../remote/pokeapi/pokemon-functions'
+import protectComponent from '../protected-route/UserAuthRoute'
 import { PokemonDisplay } from './PokemonCard'
 
 
@@ -58,3 +59,5 @@ export const Pokedex:React.FunctionComponent<any> = (props)=>{
         </>
     )
 }
+
+export default protectComponent(Pokedex)

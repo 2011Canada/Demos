@@ -14,7 +14,7 @@ const UserAuthRoute: React.FunctionComponent<any> = (props) => {
         <UserContext.Consumer>
         { user =>
 
-            (user.roles) ?
+            (user) ?
             <>
                 {props.children}
             </>

@@ -6,7 +6,7 @@ import axios from 'axios'
 
 //this is where we config every single request for a certain api
 export const e720BaseClient = axios.create({
-    baseURL:"http://localhost:8080/e720",
+    baseURL:"http://ec2-3-226-237-188.compute-1.amazonaws.com:8090/e720",
     headers:{
         'Content-Type': "application/json"
     }

@@ -25,5 +25,6 @@ public class HibernateLauncher {
 		t.commit();
 		
 		sess.close();
+		//b is now detached
 	}
 }

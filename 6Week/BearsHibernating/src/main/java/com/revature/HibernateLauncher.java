@@ -1,30 +1,32 @@
 package com.revature;
 
 
-
 import java.math.BigDecimal;
-
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import java.util.List;
 
 import com.revature.models.Bear;
-import com.revature.utils.SessionFactoryUtil;
+import com.revature.repositories.BearDao;
+import com.revature.repositories.BearHibernateDao;
+
 
 public class HibernateLauncher {
 
 	
 	public static void main(String[] args) {
-		Session sess = SessionFactoryUtil.getSessionFactory().openSession();
+		BearDao bd = new BearHibernateDao();
 		
-		Transaction t = sess.beginTransaction();
 		
-		Bear b = new Bear(0, "Baloo", "Black", "Black", new BigDecimal(800), 2, "Berries");
+		Bear yogi = bd.getOne(1);
+		//System.out.println(baloo.getHome().getDenName());
+		System.out.println(yogi);
 		
-		sess.save(b);
+		Bear baloo = new Bear(0,"Baloo", "black", "Black", new BigDecimal(1200), 2, "Beatles" , null);
+		bd.buildABear(baloo);
 		
-		t.commit();
-		
-		sess.close();
-		//b is now detached
+		List<Bear> byC = bd.findBearByColour("Black");
+		for(Bear b : byC) {
+			System.out.println(b);
+		}
+		bd.bearByCriteria().forEach(ele->System.out.println(ele));
 	}
 }

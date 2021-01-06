@@ -4,12 +4,15 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.proxy.HibernateProxy;
 
 
 
@@ -36,9 +39,10 @@ public class Bear {
 	@Column(name = "favorite_food")
 	private String favoriteFood;
 
-	@ManyToOne
+	
 	//name refers to the name of the column on our table
 	//referenced column name refers to the name of the column on their table
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(referencedColumnName = "den_id")
 	private Den home;
 	
@@ -51,11 +55,8 @@ public class Bear {
 
 
 
-
-
-
 	public Bear(int bearId, String name, String species, String colour, BigDecimal weight, int numberOfLegs,
-			String favoriteFood) {
+			String favoriteFood, Den home) {
 		super();
 		this.bearId = bearId;
 		this.name = name;
@@ -64,10 +65,8 @@ public class Bear {
 		this.weight = weight;
 		this.numberOfLegs = numberOfLegs;
 		this.favoriteFood = favoriteFood;
+		this.home = home;
 	}
-
-
-
 
 
 
@@ -77,15 +76,9 @@ public class Bear {
 
 
 
-
-
-
 	public void setBearId(int bearId) {
 		this.bearId = bearId;
 	}
-
-
-
 
 
 
@@ -95,15 +88,9 @@ public class Bear {
 
 
 
-
-
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
-
 
 
 
@@ -113,15 +100,9 @@ public class Bear {
 
 
 
-
-
-
 	public void setSpecies(String species) {
 		this.species = species;
 	}
-
-
-
 
 
 
@@ -131,15 +112,9 @@ public class Bear {
 
 
 
-
-
-
 	public void setColour(String colour) {
 		this.colour = colour;
 	}
-
-
-
 
 
 
@@ -149,15 +124,9 @@ public class Bear {
 
 
 
-
-
-
 	public void setWeight(BigDecimal weight) {
 		this.weight = weight;
 	}
-
-
-
 
 
 
@@ -167,15 +136,9 @@ public class Bear {
 
 
 
-
-
-
 	public void setNumberOfLegs(int numberOfLegs) {
 		this.numberOfLegs = numberOfLegs;
 	}
-
-
-
 
 
 
@@ -185,15 +148,21 @@ public class Bear {
 
 
 
-
-
-
 	public void setFavoriteFood(String favoriteFood) {
 		this.favoriteFood = favoriteFood;
 	}
 
 
 
+	public Den getHome() {
+		return home;
+	}
+
+
+
+	public void setHome(Den home) {
+		this.home = home;
+	}
 
 
 
@@ -204,15 +173,13 @@ public class Bear {
 		result = prime * result + bearId;
 		result = prime * result + ((colour == null) ? 0 : colour.hashCode());
 		result = prime * result + ((favoriteFood == null) ? 0 : favoriteFood.hashCode());
+		result = prime * result + ((home == null) ? 0 : home.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + numberOfLegs;
 		result = prime * result + ((species == null) ? 0 : species.hashCode());
 		result = prime * result + ((weight == null) ? 0 : weight.hashCode());
 		return result;
 	}
-
-
-
 
 
 
@@ -237,6 +204,11 @@ public class Bear {
 				return false;
 		} else if (!favoriteFood.equals(other.favoriteFood))
 			return false;
+		if (home == null) {
+			if (other.home != null)
+				return false;
+		} else if (!home.equals(other.home))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -259,15 +231,19 @@ public class Bear {
 
 
 
-
-
-
 	@Override
 	public String toString() {
+		String home = "";
+		if(this.home instanceof HibernateProxy) {
+			home = "{}";
+		}else if(this.home == null){
+			home = null;
+		}else {
+			
+			home = this.home.toString();
+		}
 		return "Bear [bearId=" + bearId + ", name=" + name + ", species=" + species + ", colour=" + colour + ", weight="
-				+ weight + ", numberOfLegs=" + numberOfLegs + ", favoriteFood=" + favoriteFood + "]";
+				+ weight + ", numberOfLegs=" + numberOfLegs + ", favoriteFood=" + favoriteFood + ", home=" + home + "]";
 	}
-
 	
-
 }

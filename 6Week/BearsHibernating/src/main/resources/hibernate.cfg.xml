@@ -10,7 +10,7 @@
 		<property name="hibernate.connection.password">DummyValue</property>
 		<property name="hibernate.connection.url">jdbc:postgresql://host:port/databasename</property>
 		<property name="hibernate.default_schema">bears</property>
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">validate</property>
 		<mapping class="com.revature.models.Bear"/>
 		<mapping class="com.revature.models.Den"/>
 	</session-factory>

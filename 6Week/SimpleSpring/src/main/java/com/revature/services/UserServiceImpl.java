@@ -9,6 +9,13 @@ public class UserServiceImpl implements UserService {
 	
 	private PurchaseHistoryDao phd;
 	
+	
+	public UserServiceImpl(UserDao ud, PurchaseHistoryDao phd) {
+		this.ud = ud;
+		this.phd = phd;
+	}
+	
+	
 	public String getUser(int id) {
 		return ud.getByID(id);
 	}

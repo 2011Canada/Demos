@@ -19,4 +19,15 @@ public class CatalogueServiceImpl implements CatalogueService {
 		return md.getByID(catalogueId);
 	}
 
+	
+	
+	
+	public void setCd(CatalogueDao cd) {
+		this.cd = cd;
+	}
+
+	public void setMd(MediaDao md) {
+		this.md = md;
+	}
+	
 }

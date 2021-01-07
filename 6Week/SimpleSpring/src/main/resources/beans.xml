@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+		
+		
+	<!-- The blow tag will enable us to use annotations in a spring project -->
+	<context:component-scan base-package="com.revature"></context:component-scan>	
+		
+		<!-- This is where we tell spring what beans exists and how they relate to each other -->
+		
+	<bean id="User Service" class="com.revature.services.UserServiceImpl">
+		<constructor-arg ref="User Dao"/>
+		<constructor-arg ref="Purchase History Dao"/>
+	</bean>	
+	<bean id="Catalogue Service" class="com.revature.services.CatalogueServiceImpl">
+		<property name="cd" ref="Catalogue Dao"/>
+		<property name="md" ref="Media Dao"/>
+	</bean>	
+	<bean id="User Dao" class="com.revature.repositories.UserDaoImpl" scope="singleton">
+	</bean>		
+	<bean id="Catalogue Dao" class="com.revature.repositories.CatalogueDaoImple">
+	</bean>	
+	<bean id="Media Dao" class="com.revature.repositories.MediaDaoImpl">
+	</bean>	
+	<bean id="Purchase History Dao" class="com.revature.repositories.PurchaseHistoryDaoImpl">
+	</bean>	
+	
+		
+</beans>

@@ -4,7 +4,7 @@ public class PurchaseHistoryDaoImpl implements PurchaseHistoryDao {
 
 	public String getByID(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return "you got PHistory" + id;
 	}
 
 }

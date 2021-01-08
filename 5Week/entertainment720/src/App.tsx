@@ -13,6 +13,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { LoginForm } from './components/login/LoginForm';
 import  Pokedex  from './components/pokedex/Pokedex';
 import { User } from './models/User';
+import { PaperDeck } from './components/store-front/paper-store/PaperDeck';
+import { StoreFront } from './components/store-front/StoreFront';
+
 
 //the custom hook defines the state for user, and the provides access to it
 
@@ -32,9 +35,9 @@ function App() {
 
           <header className="App-header">
 
-            <FancyBorder>
+            {/* <FancyBorder>
               <CanadaBanner exclam={9} />
-            </FancyBorder>
+            </FancyBorder> */}
             <Switch>
               {/* makes it so only a single route inside is ever rendered
             it always choose the first route found that matches the path, put generic paths
@@ -68,6 +71,9 @@ function App() {
               <Route path="/pokemon">
                 <Pokedex />
               </Route>
+              <Route path="/store">
+                <StoreFront/>
+              </Route>
             </Switch>
 
           </header>
@@ -84,6 +90,8 @@ function App() {
           <Link to="/login"> Login</Link>
           <br></br>
           <Link to="/pokemon"> Pokemon</Link>
+          <br></br>
+          <Link to="/store"> Store</Link>
           <ToastContainer
             position="bottom-left"
             autoClose={5000}

@@ -2,6 +2,7 @@ package com.revature.models;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,7 +43,7 @@ public class Bear {
 	
 	//name refers to the name of the column on our table
 	//referenced column name refers to the name of the column on their table
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(referencedColumnName = "den_id")
 	private Den home;
 	

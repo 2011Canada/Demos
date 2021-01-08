@@ -1,6 +1,7 @@
 import { Card, CardContent, CardMedia, Chip, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
 import { Pokemon, PokemonType } from '../../models/Pokemon'
+import './PokemonCard.css'
 
 const types = {
     flying: {

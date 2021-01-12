@@ -5,7 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Customer {
 	
 	@Id
@@ -13,16 +16,19 @@ public class Customer {
 	private int customerId;
 	
 	private String name;
+	
+	private String role;
 
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(int customerId, String name) {
+	public Customer(int customerId, String name, String role) {
 		super();
 		this.customerId = customerId;
 		this.name = name;
+		this.role = role;
 	}
 
 	public int getCustomerId() {
@@ -41,9 +47,17 @@ public class Customer {
 		this.name = name;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	@Override
 	public String toString() {
-		return "Customer [customerId=" + customerId + ", name=" + name + "]";
+		return "Customer [customerId=" + customerId + ", name=" + name + ", role=" + role + "]";
 	}
 
 	@Override
@@ -52,6 +66,7 @@ public class Customer {
 		int result = 1;
 		result = prime * result + customerId;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
 
@@ -71,8 +86,15 @@ public class Customer {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
+			return false;
 		return true;
 	}
+
+	
 	
 	
 

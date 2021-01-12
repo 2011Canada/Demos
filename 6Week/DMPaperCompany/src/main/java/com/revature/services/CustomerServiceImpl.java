@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.exceptions.CustomerNotFoundException;
 import com.revature.models.Customer;
 import com.revature.repositories.CustomerDao;
 
@@ -39,7 +40,11 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Customer findByName(String name) {
 		// TODO Auto-generated method stub
-		return cd.findCustomerByName(name);
+		Customer c = cd.findCustomerByName(name);
+		if(c == null) {
+			throw new CustomerNotFoundException();
+		}
+		return c;
 	}
 
 }

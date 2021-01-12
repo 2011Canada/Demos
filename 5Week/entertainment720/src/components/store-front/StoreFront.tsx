@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { PaperOption } from '../../models/PaperOption'
 import { PurchaseHistoryLine } from '../../models/PurchaseHistoryLine'
+import { makePurchase } from '../../remote/DM-paper/purchase-history-functions'
 import { FancyBorder } from '../fancy-border/FancyBorder'
 import { PaperDeck } from './paper-store/PaperDeck'
 import { ShoppingCart } from './shopping-cart/ShoppingCart'
@@ -21,6 +23,16 @@ export const StoreFront: React.FunctionComponent<any> = (props) => {
     }
 
 
+    const submitOrder = async () => {
+        let success = await makePurchase({purchaseHistoryId:0,totalPurchase:purchaseLines, purchaser: {name:"Olivia", customerId:1}})
+        if(success){
+            toast.success(`New Order ${success.purchaseHistoryId} Created`)
+            changePurchaseLines([])
+        }
+
+    }
+
+
     return (
         <>
             <Switch>
@@ -28,7 +40,7 @@ export const StoreFront: React.FunctionComponent<any> = (props) => {
                     <PaperDeck buyPaper={buyPaper}/>
                 </Route>
                 <Route path={`${match.path}/shopping-cart`}>
-                    <ShoppingCart lines={purchaseLines}/>
+                    <ShoppingCart lines={purchaseLines} submitOrder={submitOrder}/>
                 </Route>
             </Switch>
             <FancyBorder>

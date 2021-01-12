@@ -10,5 +10,6 @@ public interface PurchaseHistoryService {
 	
 	public PurchaseHistory findPurchaseHistoryById(int id);
 	
+	//makePurchase
 	public PurchaseHistory savePurchaseHistory(PurchaseHistory C);
 }

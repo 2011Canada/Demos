@@ -1,12 +1,19 @@
 server:
   port: 8888
   
-spring:  application:    name: user-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 
+          - "*" 
+spring:  application:    name: alec-service
     
 eureka:
   client:
     service-url:      defaultZone: http://100.36.17.163:9000/eureka
-    instance: 
-      lease-expiration-duration-in-seconds: 10
-      lease-renewal-interval-in-seconds: 5
-      #in production we don't hearbeat this fast
+  instance: 
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+    #in production we don't hearbeat this fast

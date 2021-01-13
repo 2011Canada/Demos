@@ -1,0 +1,21 @@
+server:
+  port: 8765
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://100.36.17.163:9000/eureka
+  instance: 
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+    #in production we don't hearbeat this fast
+
+spring:
+  application:
+    name: gateway-service  cloud:
+    gateway:
+      routes:      - id: user-service-route
+        uri: lb://ALEC-SERVICE
+        predicates:        - Path=/users/**

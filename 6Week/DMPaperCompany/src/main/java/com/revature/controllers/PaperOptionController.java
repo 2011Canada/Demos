@@ -31,7 +31,7 @@ public class PaperOptionController {
 	}
 	
 	@GetMapping
-	@Auth(roles = {"Admin", "Sales"}, test = 0)
+	//@Auth(roles = {"Admin", "Sales"}, test = 0)
 	public ResponseEntity<List<PaperOption>> getAllPaperOptions(){
 		return new ResponseEntity<List<PaperOption>>(pos.findAllPaperOptions(), HttpStatus.OK);
 	}

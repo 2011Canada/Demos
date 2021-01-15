@@ -1,0 +1,25 @@
+server:
+  port: 8899
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 
+          - "*" 
+spring:
+  application:
+    name: pet-service
+    
+eureka:
+  client:
+    service-url:
+      defaultZone: http://100.36.17.163:9000/eureka
+  instance: 
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+    #in production we don't hearbeat this fast
+    
+feign:
+  hystrix:    enabled: true

@@ -19,3 +19,7 @@ spring:
       routes:      - id: user-service-route
         uri: lb://ALEC-SERVICE
         predicates:        - Path=/users/**
+      - id: pet-service-route
+        uri: lb://PET-SERVICE
+        predicates:
+        - Path=/pets/**
